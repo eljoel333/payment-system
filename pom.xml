@@ -22,8 +22,9 @@
 		<module>auth-service</module>
 		<module>account-service</module>
 		<module>transaction-service</module>
-
-
+		<module>discovery-server</module>
+		<module>api-gateway</module>
+		<module>config-server</module>
 	</modules>
 
 	<properties>
@@ -33,7 +34,20 @@
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<mapstruct.version>1.6.2</mapstruct.version>
 		<lombok.version>1.18.34</lombok.version>
+		<spring-cloud.version>2023.0.3</spring-cloud.version>
 	</properties>
+
+	<dependencyManagement>
+		<dependencies>
+			<dependency>
+				<groupId>org.springframework.cloud</groupId>
+				<artifactId>spring-cloud-dependencies</artifactId>
+				<version>${spring-cloud.version}</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
 
 	<dependencies>
 		<dependency>

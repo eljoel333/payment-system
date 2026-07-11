@@ -102,6 +102,12 @@ public class Transaction {
         this.completedAt   = Instant.now();
     }
 
+    public void markReversed(String reason) {
+        this.status        = TransactionStatus.REVERSED;
+        this.failureReason = reason;
+        this.completedAt   = Instant.now();
+    }
+
     // ── Getters ───────────────────────────────────────────
 
     public String getId()                 { return id; }

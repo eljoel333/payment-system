@@ -44,9 +44,11 @@ public class AccountController {
         var result = debitUseCase.execute(
                 new DebitUseCase.DebitCommand(
                         accountId,
+                        null,
                         jwt.getSubject(),
                         request.amount(),
-                        request.correlationId()
+                        request.correlationId(),
+                        null
                 )
         );
         return ResponseEntity.ok(DebitResponse.from(result));
@@ -86,7 +88,13 @@ public class AccountController {
             @AuthenticationPrincipal Jwt jwt) {
 
         var result = depositUseCase.execute(
-                new DepositUseCase.DepositCommand(accountId, jwt.getSubject(), request.amount())
+                new DepositUseCase.DepositCommand(
+                        accountId,
+                        jwt.getSubject(),
+                        request.amount(),
+                        null,
+                        null    // ← transactionId null en REST
+                )
         );
         return ResponseEntity.ok(DepositResponse.from(result));
     }
